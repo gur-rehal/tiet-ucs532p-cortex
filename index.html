@@ -1,108 +1,211 @@
-<h1>Automated Road &amp; Concrete Crack Detection and Severity Analysis</h1>
-<p>Course: UCS532 &ndash; Computer Vision</p>
-<p>Team Members: Gurleen Rehal, Harnoor Bakshi, Purnima Adhikari</p>
-<p>&nbsp;</p>
-<h2>1. &nbsp;Problem Statement</h2>
-<p>Road and concrete infrastructures form the backbone of urban mobility and economic activity. However, due to continuous exposure to environmental stress, cyclic loading, material fatigue, and aging, these surfaces gradually develop cracks. Studies indicate that nearly 70&ndash;80% of road failures originate as minor surface cracks. If detected at an early stage, the cost of repair can be reduced by 4&ndash;6 times compared to delayed reconstruction. Therefore, early identification and quantitative assessment of cracks are critical for preventive maintenance and infrastructure sustainability.</p>
-<p>Currently, inspection practices are predominantly manual. Engineers visually examine surfaces and document observations based on subjective judgment. This approach is time-consuming, labor-intensive, inconsistent across inspectors, and difficult to scale across large networks spanning hundreds of kilometers. While some automated systems exist, many focus only on binary classification&mdash;detecting whether a crack exists or not&mdash;without providing measurable severity analysis required for decision-making.</p>
+<!DOCTYPE html>
+<html>
+<head>
+<title>Automated Road & Concrete Crack Detection</title>
+
+<style>
+
+/* Page Background */
+body {
+    margin: 0;
+    font-family: 'Segoe UI', sans-serif;
+    background: linear-gradient(135deg, #1e3c72, #2a5298);
+    color: #2c3e50;
+}
+
+/* Main Container */
+.container {
+    max-width: 1000px;
+    margin: 40px auto;
+    background: #ffffff;
+    padding: 40px;
+    border-radius: 15px;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+}
+
+/* Title Styling */
+h1 {
+    text-align: center;
+    color: #c0392b;
+    font-size: 36px;
+    margin-bottom: 10px;
+}
+
+.course-info {
+    text-align: center;
+    color: #555;
+    margin-bottom: 30px;
+}
+
+/* Section Headings */
+h2 {
+    border-left: 6px solid #e74c3c;
+    padding-left: 10px;
+    color: #2c3e50;
+    margin-top: 40px;
+}
+
+/* Paragraph Styling */
+p {
+    line-height: 1.7;
+    font-size: 16px;
+}
+
+/* Objectives bullets */
+ul {
+    padding-left: 20px;
+}
+
+ul li {
+    margin-bottom: 8px;
+}
+
+/* Methodology Numbered List */
+ol li {
+    margin-bottom: 15px;
+    line-height: 1.6;
+}
+
+/* Timeline Table */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+table th {
+    background-color: #2a5298;
+    color: white;
+    padding: 12px;
+    text-align: left;
+}
+
+table td {
+    padding: 12px;
+    border-bottom: 1px solid #ddd;
+}
+
+table tr:nth-child(even) {
+    background-color: #f2f6ff;
+}
+
+table tr:hover {
+    background-color: #eaf0ff;
+}
+
+/* Highlight Box for Resources */
+.resources {
+    background: #f9f9f9;
+    padding: 20px;
+    border-radius: 10px;
+    border-left: 5px solid #2a5298;
+}
+
+/* Smooth hover effect */
+.container:hover {
+    transform: scale(1.005);
+    transition: 0.3s ease-in-out;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>Automated Road & Concrete Crack Detection and Severity Analysis</h1>
+
+<div class="course-info">
+    <p><strong>Course:</strong> UCS532 – Computer Vision</p>
+    <p><strong>Team Members:</strong> Gurleen Rehal, Harnoor Bakshi, Purnima Adhikari</p>
+</div>
+
+<h2>1. Problem Statement</h2>
+<p>Road and concrete infrastructures form the backbone of urban mobility and economic activity. However, due to continuous exposure to environmental stress, cyclic loading, material fatigue, and aging, these surfaces gradually develop cracks. Studies indicate that nearly 70–80% of road failures originate as minor surface cracks. If detected at an early stage, the cost of repair can be reduced by 4–6 times compared to delayed reconstruction. Therefore, early identification and quantitative assessment of cracks are critical for preventive maintenance and infrastructure sustainability.</p>
+
+<p>Currently, inspection practices are predominantly manual. Engineers visually examine surfaces and document observations based on subjective judgment. This approach is time-consuming, labor-intensive, inconsistent across inspectors, and difficult to scale across large networks spanning hundreds of kilometers. While some automated systems exist, many focus only on binary classification—detecting whether a crack exists or not—without providing measurable severity analysis required for decision-making.</p>
+
 <p>This project proposes a Computer Vision (CV) based system that processes RGB surface imagery and converts it into measurable structural indicators. The system not only detects and segments cracks but also computes quantitative metrics such as crack width, length, density, and connectivity. These metrics are aggregated into a Crack Severity Index categorized into low, medium, and high risk levels. The final output supports data-driven maintenance prioritization for municipal authorities, civil engineers, smart city platforms, and inspection agencies.</p>
+
 <h2>2. Objectives</h2>
-<p>Primary Objective:<br /> To design and implement a scalable computer vision pipeline capable of automatically detecting, segmenting, and quantifying cracks in road and concrete surfaces using RGB imagery.</p>
-<p>Specific Objectives:<br /> &bull; To collect and preprocess diverse surface images with lighting normalization and noise reduction.<br /> &bull; To extract edge-based and texture-based features to identify potential crack regions.<br /> &bull; To perform crack segmentation using classical computer vision techniques.<br /> &bull; To compute structural metrics including crack width, length, density, and connectivity.<br /> &bull;To develop a Crack Severity Index for maintenance prioritization.<br /> &bull; To evaluate system performance using segmentation accuracy and robustness metrics.</p>
+<p><strong>Primary Objective:</strong><br>
+To design and implement a scalable computer vision pipeline capable of automatically detecting, segmenting, and quantifying cracks in road and concrete surfaces using RGB imagery.</p>
+
+<p><strong>Specific Objectives:</strong></p>
+<ul>
+<li>To collect and preprocess diverse surface images with lighting normalization and noise reduction.</li>
+<li>To extract edge-based and texture-based features to identify potential crack regions.</li>
+<li>To perform crack segmentation using classical computer vision techniques.</li>
+<li>To compute structural metrics including crack width, length, density, and connectivity.</li>
+<li>To develop a Crack Severity Index for maintenance prioritization.</li>
+<li>To evaluate system performance using segmentation accuracy and robustness metrics.</li>
+</ul>
+
 <h2>3. Methodology</h2>
-<p>The proposed system follows a structured computer vision pipeline that transforms raw imagery into actionable structural metrics. The methodology is divided into six major stages.</p>
 <ol>
-<li>Image Acquisition and Preprocessing: RGB images are captured from fixed roadside cameras, vehicle-mounted systems, or drone platforms. Preprocessing includes resizing, grayscale conversion, histogram equalization, contrast enhancement, and Gaussian filtering to remove noise. Lighting normalization ensures consistency across varying environmental conditions.</li>
-<li>Feature Extraction: Edge detection algorithms such as Canny and Sobel operators are applied to highlight structural discontinuities. Texture descriptors and gradient-based features help differentiate cracks from shadows, stains, or surface variations. These features form the foundation for robust crack identification.</li>
-<li>Feature Fusion: Multiple extracted features are combined to enhance reliability. By integrating edge intensity, texture response, and gradient orientation, the system reduces false positives and improves detection robustness under diverse surface conditions.</li>
-<li>Crack Segmentation: Morphological operations and thresholding techniques isolate crack regions from the background. Binary masks are generated to clearly represent segmented cracks. This stage ensures that crack pixels are accurately separated from non-crack regions.</li>
-<li>Orientation Consistency Filtering: Structural cracks typically exhibit directional continuity. Orientation filtering removes short random edges caused by noise or shadows, retaining only continuous and structurally meaningful crack patterns.</li>
-<li>Severity Metric Computation: Quantitative metrics such as crack width (pixel thickness), crack length (connected component analysis), crack density (percentage area affected), and connectivity are computed. These metrics are normalized and aggregated into a Crack Severity Index categorized into Low (monitor), Medium (scheduled repair), and High (urgent maintenance). System validation includes segmentation accuracy evaluation and performance benchmarking.</li>
+<li><strong>Image Acquisition and Preprocessing:</strong> RGB images are captured from fixed roadside cameras, vehicle-mounted systems, or drone platforms. Preprocessing includes resizing, grayscale conversion, histogram equalization, contrast enhancement, and Gaussian filtering.</li>
+
+<li><strong>Feature Extraction:</strong> Edge detection algorithms such as Canny and Sobel operators highlight structural discontinuities. Texture descriptors help differentiate cracks from shadows or stains.</li>
+
+<li><strong>Feature Fusion:</strong> Multiple extracted features are combined to enhance reliability and reduce false positives.</li>
+
+<li><strong>Crack Segmentation:</strong> Morphological operations and thresholding isolate crack regions and generate binary masks.</li>
+
+<li><strong>Orientation Consistency Filtering:</strong> Removes random noise while preserving structurally meaningful crack patterns.</li>
+
+<li><strong>Severity Metric Computation:</strong> Crack width, length, density, and connectivity are computed and aggregated into a Crack Severity Index.</li>
 </ol>
-<p>&nbsp;</p>
+
 <h2>4. Timeline (12 Weeks)</h2>
 <table>
-<tbody>
 <tr>
-<td width="192">
-<p>Phase</p>
-</td>
-<td width="192">
-<p>Duration</p>
-</td>
-<td width="192">
-<p>Deliverable</p>
-</td>
+<th>Phase</th>
+<th>Duration</th>
+<th>Deliverable</th>
 </tr>
 <tr>
-<td width="192">
-<p>Literature Review &amp; Dataset Collection</p>
-</td>
-<td width="192">
-<p>Weeks 1&ndash;3</p>
-</td>
-<td width="192">
-<p>Annotated bibliography &amp; dataset</p>
-</td>
+<td>Literature Review & Dataset Collection</td>
+<td>Weeks 1–3</td>
+<td>Annotated bibliography & dataset</td>
 </tr>
 <tr>
-<td width="192">
-<p>Preprocessing Module Development</p>
-</td>
-<td width="192">
-<p>Weeks 4&ndash;5</p>
-</td>
-<td width="192">
-<p>Image enhancement pipeline</p>
-</td>
+<td>Preprocessing Module Development</td>
+<td>Weeks 4–5</td>
+<td>Image enhancement pipeline</td>
 </tr>
 <tr>
-<td width="192">
-<p>Feature Extraction Implementation</p>
-</td>
-<td width="192">
-<p>Weeks 6&ndash;7</p>
-</td>
-<td width="192">
-<p>Edge &amp; texture features</p>
-</td>
+<td>Feature Extraction Implementation</td>
+<td>Weeks 6–7</td>
+<td>Edge & texture features</td>
 </tr>
 <tr>
-<td width="192">
-<p>Segmentation &amp; Filtering</p>
-</td>
-<td width="192">
-<p>Weeks 8&ndash;9</p>
-</td>
-<td width="192">
-<p>Binary masks &amp; refined cracks</p>
-</td>
+<td>Segmentation & Filtering</td>
+<td>Weeks 8–9</td>
+<td>Binary masks & refined cracks</td>
 </tr>
 <tr>
-<td width="192">
-<p>Severity Metric Computation</p>
-</td>
-<td width="192">
-<p>Weeks 10&ndash;11</p>
-</td>
-<td width="192">
-<p>Crack Severity Index</p>
-</td>
+<td>Severity Metric Computation</td>
+<td>Weeks 10–11</td>
+<td>Crack Severity Index</td>
 </tr>
 <tr>
-<td width="192">
-<p>Final Testing &amp; Documentation</p>
-</td>
-<td width="192">
-<p>Week 12</p>
-</td>
-<td width="192">
-<p>Final report &amp; presentation</p>
-</td>
+<td>Final Testing & Documentation</td>
+<td>Week 12</td>
+<td>Final report & presentation</td>
 </tr>
-</tbody>
 </table>
-<h2>5. Resources &amp; Feasibility</h2>
-<p>Human Resources: The project will be executed by a three-member team. Responsibilities are divided into data collection and preprocessing, algorithm implementation, and evaluation &amp; documentation.</p>
-<p>Technical Resources: Python programming language with libraries including OpenCV, NumPy, Scikit-learn, and Matplotlib will be used for implementation and visualization. Publicly available crack datasets and captured RGB imagery will serve as data sources.</p>
-<p>Hardware &amp; Budget: A standard computing system is sufficient for implementation. All software tools are open-source; therefore, no external funding is required. The project is feasible within a 12-week academic semester.</p>
+
+<h2>5. Resources & Feasibility</h2>
+
+<div class="resources">
+<p><strong>Human Resources:</strong> Three-member team responsible for data collection, implementation, and evaluation.</p>
+<p><strong>Technical Resources:</strong> Python, OpenCV, NumPy, Scikit-learn, Matplotlib.</p>
+<p><strong>Hardware & Budget:</strong> Standard computing system; no external funding required.</p>
+</div>
+
+</div>
+</body>
+</html>
